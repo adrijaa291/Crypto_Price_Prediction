@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %}
+        <h2 class="text-center">Prediction for {{ stock }}</h2>
+        <img src="{{ plot1 }}" class="img-fluid my-4">
+        <img src="{{ plot2 }}" class="img-fluid my-4">
+        <img src="{{ plot3 }}" class="img-fluid my-4">
+
+        <h4 class="mt-4">Next Days Predictions:</h4>
+        <ul class="list-group">
+            {% for val in predictions %}
+                <li class="list-group-item">{{ loop.index }}: {{ val | round(2) }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="/" class="btn btn-secondary mt-4">Back</a>
+</div>
+</body>
+</html>
